@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amritpal Singh Kaur - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #06b6d4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -250px;
+            left: -250px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            right: -200px;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 6rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease 0.8s backwards;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 3D Card */
+        .hero-card {
+            position: relative;
+            background: linear-gradient(135deg, var(--dark-light), rgba(30, 41, 59, 0.5));
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            animation: fadeInRight 1s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(37, 99, 235, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--dark-light);
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            border-color: var(--primary);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 2rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid var(--dark);
+        }
+
+        .timeline-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .company {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--dark-light);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(139, 92, 246, 0.2));
+            padding: 2rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 1.5rem 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        /* GitHub Projects */
+        .github-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .github-card {
+            background: var(--dark-light);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s;
+        }
+
+        .github-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .github-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .github-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .github-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--dark-light);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-category li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 9999;
+            transition: width 0.2s;
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+
+        .spinner {
+            border: 3px solid rgba(148, 163, 184, 0.1);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+        }
+
+        /* Download CV Button */
+        .download-cv {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .download-cv:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">ASK</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#github">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Amritpal Singh Kaur</h1>
+                    <div class="subtitle">Software Engineer & Cloud Enthusiast</div>
+                    <p>MSc Advanced Computer Science student at Queen Mary University of London, specializing in cloud computing, machine learning, and full-stack development. Passionate about building scalable, mission-critical systems.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span>📧</span>
+                            <span>Sharysingh1144@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>📱</span>
+                            <span>07722145765</span>
+                        </div>
+                        <div class="contact-item">
+                            <span>📍</span>
+                            <span>London, UK</span>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <a href="https://github.com/Amrit004" class="btn btn-primary" target="_blank">View GitHub</a>
+                        <a href="https://linkedin.com/in/amritpal-singh-kaur-b54b9a1b1" class="btn btn-secondary" target="_blank">LinkedIn Profile</a>
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--accent);">Quick Skills Overview</h3>
+                    <div class="skills-grid">
+                        <div class="skill-tag">☁️ Cloud Computing</div>
+                        <div class="skill-tag">🤖 Machine Learning</div>
+                        <div class="skill-tag">🔒 Security</div>
+                        <div class="skill-tag">💻 Full-Stack Dev</div>
+                        <div class="skill-tag">🐧 Linux/Unix</div>
+                        <div class="skill-tag">🗄️ Databases</div>
+                    </div>
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(148, 163, 184, 0.1);">
+                        <h4 style="color: var(--text-muted); margin-bottom: 1rem;">Education</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <strong>MSc Advanced Computer Science</strong>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Queen Mary University of London (2025-2026)</div>
+                        </div>
+                        <div>
+                            <strong>BSc Computer Science (2:1)</strong>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Staffordshire University</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div>
+                <div class="section-header">
+                    <h2>Professional Experience</h2>
+                    <p>Building expertise in enterprise IT and financial technology</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Deployment / Breakfix Engineer</h3>
+                        <div class="company">Bank of America</div>
+                        <p>Supported enterprise desktop systems within a secure, regulated financial environment. Diagnosed and resolved hardware and software issues and assisted with large-scale deployments and asset management.</p>
+                        <div class="project-tags" style="margin-top: 1rem;">
+                            <span class="tag">Enterprise Systems</span>
+                            <span class="tag">Asset Management</span>
+                            <span class="tag">Financial Sector</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>Field Support Technician (Level 2)</h3>
+                        <div class="company">Amadeus</div>
+                        <p>Delivered secure laptop and mobile replacements, system configurations, and enterprise application installations in a fast-paced technology environment.</p>
+                        <div class="project-tags" style="margin-top: 1rem;">
+                            <span class="tag">Field Support</span>
+                            <span class="tag">System Configuration</span>
+                            <span class="tag">Security</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>IT Technician / Support</h3>
+                        <div class="company">ENI</div>
+                        <p>Provided frontline support for hardware, software, and connectivity issues while maintaining system uptime in an enterprise environment.</p>
+                        <div class="project-tags" style="margin-top: 1rem;">
+                            <span class="tag">Technical Support</span>
+                            <span class="tag">System Uptime</span>
+                            <span class="tag">Problem Solving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div>
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                    <p>Research-led and practical software solutions</p>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">🔬</div>
+                            <h3>Research-Led Software Project</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">MSc Project</p>
+                        </div>
+                        <div class="project-body">
+                            <p>Investigated modern computing technologies, evaluated design trade-offs, and implemented a prototype solution with focus on scalability, security, and performance.</p>
+                            <div class="project-tags">
+                                <span class="tag">Research</span>
+                                <span class="tag">Scalability</span>
+                                <span class="tag">Security</span>
+                                <span class="tag">Performance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">✈️</div>
+                            <h3>Progressive Web App</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Final Year Project</p>
+                        </div>
+                        <div class="project-body">
+                            <p>Developed a PWA with travel agency features and AI-assisted recommendations, applying UX principles, performance optimization, and cross-device design.</p>
+                            <div class="project-tags">
+                                <span class="tag">PWA</span>
+                                <span class="tag">AI Integration</span>
+                                <span class="tag">UX Design</span>
+                                <span class="tag">Full-Stack</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">🔐</div>
+                            <h3>Security & Authentication System</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Academic Project</p>
+                        </div>
+                        <div class="project-body">
+                            <p>Designed and implemented secure authentication mechanisms with focus on network security principles and secure system design patterns.</p>
+                            <div class="project-tags">
+                                <span class="tag">Security</span>
+                                <span class="tag">Authentication</span>
+                                <span class="tag">Network Security</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div>
+                <div class="section-header">
+                    <h2>Technical Skills</h2>
+                    <p>Comprehensive toolkit for modern software development</p>
+                </div>
+
+                <div class="skills-section">
+                    <div class="skill-category">
+                        <h3>💻 Programming & Development</h3>
+                        <ul>
+                            <li>Java</li>
+                            <li>JavaScript</li>
+                            <li>C#</li>
+                            <li>HTML5 & CSS3</li>
+                            <li>REST APIs</li>
+                            <li>Functional Programming</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>☁️ Cloud & Infrastructure</h3>
+                        <ul>
+                            <li>AWS (EC2, S3, IAM)</li>
+                            <li>Cloud Computing Concepts</li>
+                            <li>Virtualization</li>
+                            <li>Scalable Architectures</li>
+                            <li>Linux/Unix</li>
+                            <li>Windows Server</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>🗄️ Data & Databases</h3>
+                        <ul>
+                            <li>SQL</li>
+                            <li>Relational Databases</li>
+                            <li>ER Diagrams</li>
+                            <li>Data Structures</li>
+                            <li>Algorithms</li>
+                            <li>Data Analytics</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>🤖 AI & Machine Learning</h3>
+                        <ul>
+                            <li>Machine Learning Fundamentals</li>
+                            <li>Data Analysis</li>
+                            <li>AI-Integrated Applications</li>
+                            <li>Predictive Modeling</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>🔒 Security</h3>
+                        <ul>
+                            <li>Security & Authentication</li>
+                            <li>Network Security</li>
+                            <li>Secure System Design</li>
+                            <li>Identity Management</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>🛠️ Tools & Platforms</h3>
+                        <ul>
+                            <li>Git / GitHub</li>
+                            <li>Visual Studio / VS Code</li>
+                            <li>Android Studio</li>
+                            <li>Figma</li>
+                            <li>Agile/Scrum</li>
+                            <li>Microsoft Office</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>🌍 Languages</h3>
+                        <ul>
+                            <li>English</li>
+                            <li>Punjabi</li>
+                            <li>Hindi</li>
+                            <li>Spanish</li>
+                            <li>Catalan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Projects Section -->
+    <section id="github">
+        <div class="container">
+            <div>
+                <div class="section-header">
+                    <h2>GitHub Projects</h2>
+                    <p>Live repositories from my GitHub profile</p>
+                </div>
+
+                <div id="githubProjects" class="github-grid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 1rem;">Loading GitHub projects...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/Amrit004" target="_blank" title="GitHub">
+                    <span style="font-size: 2rem;">🔗</span>
+                </a>
+                <a href="https://linkedin.com/in/amritpal-singh-kaur-b54b9a1b1" target="_blank" title="LinkedIn">
+                    <span style="font-size: 2rem;">💼</span>
+                </a>
+                <a href="mailto:Sharysingh1144@gmail.com" title="Email">
+                    <span style="font-size: 2rem;">📧</span>
+                </a>
+            </div>
+            <p style="color: var(--text-muted);">&copy; 2026 Amritpal Singh Kaur. Built with passion for technology.</p>
+        </div>
+    </footer>
+
+    <!-- Download CV Button -->
+    <a href="#" class="download-cv" onclick="downloadCV(); return false;">📥 Download CV</a>
+
+    <script>
+        // Scroll Indicator
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+            scrollIndicator.style.width = scrollPercent + '%';
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fetch GitHub Repositories
+        async function fetchGitHubRepos() {
+            const username = 'Amrit004';
+            const projectsContainer = document.getElementById('githubProjects');
+            
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch repositories');
+                }
+                
+                const repos = await response.json();
+                
+                if (repos.length === 0) {
+                    projectsContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted);">No public repositories found. Check back soon!</p>';
+                    return;
+                }
+                
+                projectsContainer.innerHTML = repos.map(repo => `
+                    <div class="github-card">
+                        <h4>${repo.name}</h4>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">${repo.description || 'No description available'}</p>
+                        <div class="project-tags">
+                            ${repo.language ? `<span class="tag">${repo.language}</span>` : ''}
+                            <span class="tag">${repo.visibility}</span>
+                        </div>
+                        <div class="github-stats">
+                            <div class="github-stat">
+                                <span>⭐</span>
+                                <span>${repo.stargazers_count}</span>
+                            </div>
+                            <div class="github-stat">
+                                <span>🔱</span>
+                                <span>${repo.forks_count}</span>
+                            </div>
+                            <div class="github-stat">
+                                <span>📅</span>
+                                <span>${new Date(repo.updated_at).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        <a href="${repo.html_url}" target="_blank" style="display: inline-block; margin-top: 1rem; color: var(--primary); text-decoration: none;">View Repository →</a>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error fetching GitHub repos:', error);
+                projectsContainer.innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <p style="color: var(--text-muted);">Unable to load GitHub projects at this time.</p>
+                        <a href="https://github.com/Amrit004" target="_blank" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Visit GitHub Profile</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Load GitHub repos when page loads
+        window.addEventListener('load', fetchGitHubRepos);
+
+        // Download CV Function
+        function downloadCV() {
+            // Create a simple text version of CV
+            const cvContent = `
+AMRITPAL SINGH KAUR
+Software Engineer & Cloud Enthusiast
+
+Contact:
+Email: Sharysingh1144@gmail.com
+Phone: 07722145765
+Location: London, United Kingdom
+GitHub: github.com/Amrit004
+LinkedIn: linkedin.com/in/amritpal-singh-kaur-b54b9a1b1
+
+PROFESSIONAL SUMMARY
+Graduate Computer Science professional and MSc Advanced Computer Science student at Queen Mary University of London, with strong foundations in software engineering, cloud computing, Linux systems, security, and data-driven applications. Experienced in full-stack development, enterprise IT environments, and research-led technical investigation.
+
+EDUCATION
+MSc Advanced Computer Science
+Queen Mary University of London (2025-2026)
+Key areas: Cloud Computing, Machine Learning, Security & Authentication, Functional Programming, Data Analytics
+
+BSc (Hons) Computer Science (2:1)
+Staffordshire University
+
+PROFESSIONAL EXPERIENCE
+
+Bank of America - Deployment / Breakfix Engineer
+- Supported enterprise desktop systems within secure, regulated financial environment
+- Diagnosed and resolved hardware and software issues
+- Assisted with large-scale deployments and asset management
+
+Amadeus - Field Support Technician (Level 2)
+- Delivered secure laptop and mobile replacements
+- System configurations and enterprise application installations
+
+ENI - IT Technician / Support
+- Provided frontline support for hardware, software, and connectivity issues
+- Maintained system uptime
+
+TECHNICAL SKILLS
+Programming: Java, JavaScript, C#, HTML5, CSS3, REST APIs
+Cloud: AWS (EC2, S3, IAM), Cloud Computing, Virtualization
+Databases: SQL, Relational Databases, ER Diagrams
+AI/ML: Machine Learning, Data Analysis, AI Applications
+Security: Authentication, Network Security, Secure System Design
+Tools: Git/GitHub, Visual Studio, VS Code, Android Studio, Figma
+
+LANGUAGES
+English, Punjabi, Hindi, Spanish, Catalan
+            `;
+            
+            const blob = new Blob([cvContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Amritpal_Singh_Kaur_CV.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
